@@ -5,18 +5,26 @@
 
 class NewProjectApplication  : public JUCEApplication
 {
+    
 public:
-   
     NewProjectApplication() {}
-    const String getApplicationName() override       { return ProjectInfo::projectName; }
-    const String getApplicationVersion() override    { return ProjectInfo::versionString; }
-    bool moreThanOneInstanceAllowed() override       { return true; }
+    
+    const String getApplicationName() override{
+        return ProjectInfo::projectName;
+    }
+    
+    const String getApplicationVersion() override{
+        return ProjectInfo::versionString;
+    }
+    
+    bool moreThanOneInstanceAllowed() override{
+        return true;
+    }
 
-    //==============================================================================
+   
     void initialise (const String& commandLine) override
     {
         // This method is where you should put your application's initialisation code..
-
         mainWindow = new MainWindow (getApplicationName());
     }
 
@@ -50,10 +58,7 @@ public:
     class MainWindow : public DocumentWindow
     {
     public:
-        MainWindow (String name)  : DocumentWindow (name,
-                                                    Desktop::getInstance().getDefaultLookAndFeel()
-                                                                          .findColour (ResizableWindow::backgroundColourId),
-                                                    DocumentWindow::allButtons)
+        MainWindow (String name)  : DocumentWindow (name, Desktop::getInstance().getDefaultLookAndFeel().findColour (ResizableWindow::backgroundColourId), DocumentWindow::allButtons)
         {
             setUsingNativeTitleBar (true);
             setContentOwned (new MainComponent(), true);
@@ -85,6 +90,6 @@ private:
     ScopedPointer<MainWindow> mainWindow;
 };
 
-//==============================================================================
+
 // This macro generates the main() routine that launches the app.
 START_JUCE_APPLICATION (NewProjectApplication)
